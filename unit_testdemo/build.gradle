@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+
+    defaultConfig {
+        applicationId "gjj_unit_test.unit_testdemo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        //ADD THIS LINE:
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //ADD THESE LINES:
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:design:23.0.1'
+    //butterknife自动注解
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //Robolectric3.0依赖包
+//    testCompile "org.robolectric:robolectric:3.0"
+    //junit-test
+    testCompile 'junit:junit:4.12'
+
+    //ADD THESE LINES:
+    //Provides AndroidJUnitRunner
+    androidTestCompile 'com.android.support.test:runner:0.4'
+
+    // Provides JUnit 4 rules
+    androidTestCompile 'com.android.support.test:rules:0.4'
+
+    // Espresso Core
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+
+    // Espresso Contrib---这个包放入之后会报错---一定要去掉
+//    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.1'
+
+
+}
